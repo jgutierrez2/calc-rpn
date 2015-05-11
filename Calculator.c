@@ -3,7 +3,10 @@
 #include "Stack.h"
 #include "Storage.h"
 
+typedef int (*Compute)(Stack*);
 
+char *keys[100];
+Compute fns[100];
 
 struct Calculator {
   Stack *stack;
@@ -27,23 +30,40 @@ void input(Calculator *c, int i){
 }
 
 void compute(Calculator *c, char *sym){
-  int r = pop(c->stack);
-  int l = pop(c->stack);
+  int i;
+  Compute fn = NULL;
   
+  for (i = 0; i < 100; i++){
+    if (keys[i] == sym) {
+      fn = fns[i];
+      break;
+    }
+  }
+  
+  int x = fn(c->stack);
+  push(c-stack,x);
 }
 
-int add(int l, int r) {
+int add(Stack* s) {
+  int r = pop(s);
+  int l = pop(s);
   return l + r;
 }
 
-int subtract(int l, int r) {
+int subtract(Stack* s) {
+  int r = pop(s);
+  int l = pop(s);
   return l - r;
 }
 
-int multiply(int l, int r) {
+int multiply(Stack* s) {
+  int r = pop(s);
+  int l = pop(s);
   return l * r;
 }
 
-int divide(int l, int r) {
+int divide(Stack* s) {
+  int r = pop(s);
+  int l = pop(s);
   return l / r;
 }
