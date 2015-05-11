@@ -3,6 +3,8 @@
 #include "Stack.h"
 #include "Storage.h"
 
+
+
 struct Calculator {
   Stack *stack;
   Storage *mem;
@@ -28,4 +30,20 @@ void compute(Calculator *c, char *sym){
   int r = pop(c->stack);
   int l = pop(c->stack);
   
+}
+
+int add(int l, int r) {
+  return l + r;
+}
+
+int subtract(int l, int r) {
+  return l - r;
+}
+
+int multiply(int l, int r) {
+  return l * r;
+}
+
+int divide(int l, int r) {
+  return l / r;
 }
