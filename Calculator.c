@@ -4,8 +4,8 @@
 #include "Storage.h"
 
 struct Calculator {
-  Stack stack;
-  Storage mem;
+  Stack *stack;
+  Storage *mem;
 }
 
 Calculator *newCalculator(){
@@ -16,7 +16,7 @@ Calculator *newCalculator(){
 
 void destroyCalculator(Calculator *c){
   destroyStack(c->stack);
-  destroyStorage(c->Storage);
+  destroyStorage(c->mem);
   free(c);
 }
 
@@ -25,5 +25,7 @@ void input(Calculator *c, int i){
 }
 
 void compute(Calculator *c, char *sym){
+  int r = pop(c->stack);
+  int l = pop(c->stack);
   
 }
