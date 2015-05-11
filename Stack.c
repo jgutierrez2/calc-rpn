@@ -9,9 +9,9 @@ struct Stack {
 };
 
 Stack *newstack(){
-  Stack *new = malloc(sizeof(Stack));
-  new->size = 0;
-  return new;
+  Stack *s = malloc(sizeof(Stack));
+  s->size = 0;
+  return s;
 }
 
 int size(Stack *stk) {
