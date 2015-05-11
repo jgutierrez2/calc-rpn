@@ -1,7 +1,14 @@
-
+#include <stdlib.h>
+#include "Storage.h"
 
 struct Storage {
   int values[10];
+}
+
+Storage *newStorage() {
+  Storage *s = malloc(sizeof(Storage));
+  clear(s);
+  return s;
 }
 
 void store(Storage *s, int i, int v) {
