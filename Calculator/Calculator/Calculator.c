@@ -5,21 +5,22 @@
 #include "Storage.h"
 
 char *keys[100];
-Compute fns[100];
 
 struct Calculator {
   Stack *stack;
   Storage *mem;
-}
+};
 
 Calculator *newCalculator(){
   Calculator *c = malloc(sizeof(Calculator));
-  c->stack = newStack();
+  c->stack = newstack();
   c->mem = newStorage();
+    
+    return c;
 }
 
 void destroyCalculator(Calculator *c){
-  destroyStack(c->stack);
+  destroystack(c->stack);
   destroyStorage(c->mem);
   free(c);
 }

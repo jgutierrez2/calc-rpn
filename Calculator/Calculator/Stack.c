@@ -14,6 +14,10 @@ Stack *newstack(){
   return s;
 }
 
+void destroystack(Stack *stk){
+    free(stk);
+}
+
 int size(Stack *stk) {
   return stk->size;
 }
