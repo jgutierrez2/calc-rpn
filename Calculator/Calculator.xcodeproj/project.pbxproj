@@ -8,9 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		B139F3FF1B01747D002BBF47 /* Calculator.c in Sources */ = {isa = PBXBuildFile; fileRef = B139F3F71B01747D002BBF47 /* Calculator.c */; };
-		B139F4001B01747D002BBF47 /* InputTypes.c in Sources */ = {isa = PBXBuildFile; fileRef = B139F3F81B01747D002BBF47 /* InputTypes.c */; };
 		B139F4011B01747D002BBF47 /* Stack.c in Sources */ = {isa = PBXBuildFile; fileRef = B139F3FA1B01747D002BBF47 /* Stack.c */; };
 		B139F4021B01747D002BBF47 /* Storage.c in Sources */ = {isa = PBXBuildFile; fileRef = B139F3FC1B01747D002BBF47 /* Storage.c */; };
+		B1618E7E1B02B1630096B277 /* InputInterface.c in Sources */ = {isa = PBXBuildFile; fileRef = B1618E7C1B02B1630096B277 /* InputInterface.c */; };
 		B1FB513B1B01741100B20074 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = B1FB513A1B01741100B20074 /* main.c */; };
 /* End PBXBuildFile section */
 
@@ -28,13 +28,13 @@
 
 /* Begin PBXFileReference section */
 		B139F3F71B01747D002BBF47 /* Calculator.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Calculator.c; sourceTree = "<group>"; };
-		B139F3F81B01747D002BBF47 /* InputTypes.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = InputTypes.c; sourceTree = "<group>"; };
-		B139F3F91B01747D002BBF47 /* InputTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputTypes.h; sourceTree = "<group>"; };
 		B139F3FA1B01747D002BBF47 /* Stack.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Stack.c; sourceTree = "<group>"; };
 		B139F3FB1B01747D002BBF47 /* Stack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stack.h; sourceTree = "<group>"; };
 		B139F3FC1B01747D002BBF47 /* Storage.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Storage.c; sourceTree = "<group>"; };
 		B139F3FD1B01747D002BBF47 /* Storage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Storage.h; sourceTree = "<group>"; };
 		B139F4031B0174C0002BBF47 /* Calculator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Calculator.h; sourceTree = "<group>"; };
+		B1618E7C1B02B1630096B277 /* InputInterface.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = InputInterface.c; sourceTree = "<group>"; };
+		B1618E7D1B02B1630096B277 /* InputInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputInterface.h; sourceTree = "<group>"; };
 		B1FB51371B01741100B20074 /* Calculator */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Calculator; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1FB513A1B01741100B20074 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -71,12 +71,12 @@
 			children = (
 				B139F3F71B01747D002BBF47 /* Calculator.c */,
 				B139F4031B0174C0002BBF47 /* Calculator.h */,
-				B139F3F81B01747D002BBF47 /* InputTypes.c */,
-				B139F3F91B01747D002BBF47 /* InputTypes.h */,
 				B139F3FA1B01747D002BBF47 /* Stack.c */,
 				B139F3FB1B01747D002BBF47 /* Stack.h */,
 				B139F3FC1B01747D002BBF47 /* Storage.c */,
 				B139F3FD1B01747D002BBF47 /* Storage.h */,
+				B1618E7C1B02B1630096B277 /* InputInterface.c */,
+				B1618E7D1B02B1630096B277 /* InputInterface.h */,
 				B1FB513A1B01741100B20074 /* main.c */,
 			);
 			path = Calculator;
@@ -139,9 +139,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				B139F3FF1B01747D002BBF47 /* Calculator.c in Sources */,
-				B139F4001B01747D002BBF47 /* InputTypes.c in Sources */,
 				B139F4011B01747D002BBF47 /* Stack.c in Sources */,
 				B1FB513B1B01741100B20074 /* main.c in Sources */,
+				B1618E7E1B02B1630096B277 /* InputInterface.c in Sources */,
 				B139F4021B01747D002BBF47 /* Storage.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
