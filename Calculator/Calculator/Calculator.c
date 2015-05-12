@@ -6,8 +6,6 @@
 #include "Stack.h"
 #include "Storage.h"
 
-char *keys[100];
-
 struct Calculator {
   Stack *stack;
   Storage *mem;
@@ -75,7 +73,7 @@ void display(Calculator *c) {
     
 //2nd column contains stack values
     for (i = 0; i < size(c->stack); i++) {
-        sprintf(temp,"%i",at(c->stack, i));
+        sprintf(temp,"%i",at(c->stack, size(c->stack) - i - 1));
         sprintf(strs[1][49-i],"%.*s%s",(int)(15-strlen(temp)), "                    ",temp);
     }
     
@@ -86,7 +84,6 @@ void display(Calculator *c) {
     for (i = 0; i < 50; i++) {
         printf("|%s|%s|\n", strs[0][i], strs[1][i]);
     }
-    
     
     for (i = 0; i < 50; i++) {
         int j;
