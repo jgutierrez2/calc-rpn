@@ -23,14 +23,14 @@ int size(Stack *stk) {
 }
 
 int pop(Stack *stk){
-  int r = stk->xs[stk->size];
   stk->size--;
+  int r = stk->xs[stk->size];
   return r;
 }
 
-void push(Stack *stk, int y){
-  stk->size++;
+void push(Stack *stk, int y) {
   stk->xs[stk->size] = y;
+  stk->size++;
 }
 
 int at(Stack *stk, int i) {
