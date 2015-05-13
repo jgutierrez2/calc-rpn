@@ -108,6 +108,6 @@ void display(Calculator *c) {
     
     printf("----------------------------------------\n");
 
-    printf("\nInput:");
+    printf("\nInput: ");
 
 }
