@@ -8,6 +8,8 @@ void input(Calculator *c, int i);
 
 void compute(Calculator *c, char *sym);
 
+void clearStack(Calculator *c);
+
 void display(Calculator *c);
 
 void storeValue(Calculator *c, int i);
