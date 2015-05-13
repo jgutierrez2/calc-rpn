@@ -8,7 +8,9 @@ void input(Calculator *c, int i);
 
 void compute(Calculator *c, char *sym);
 
-void clearStack(Calculator *c);
+void clearStack(Calculator *c); 
+
+void deleteLast(Calculator *c); 
 
 void display(Calculator *c);
 
