@@ -46,7 +46,13 @@ void compute(Calculator *c, char *sym){
 }
 
 void clearStack(Calculator *c) {
-  clearStorage(c->mem);
+  while (size(c->stack) > 0) {
+    pop(c->stack);
+  }
+}
+
+void deleteLast(Calculator *c) {
+  pop(c->stack);
 }
 
 void storeValue(Calculator *c, int i){
@@ -97,7 +103,7 @@ void display(Calculator *c) {
 
 //print to screen
     
-    system("clear");
+    system("cls");
     
     printf("   i       Stack              Mem       \n");
     printf("----------------------------------------\n");
