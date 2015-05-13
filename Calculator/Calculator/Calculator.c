@@ -16,7 +16,7 @@ Calculator *newCalculator(){
   c->stack = newstack();
   c->mem = newStorage();
     
-    return c;
+  return c;
 }
 
 void destroyCalculator(Calculator *c){
@@ -43,6 +43,10 @@ void compute(Calculator *c, char *sym){
       case '^' : { push(c->stack, pow(l,r)); break; }
     }
   }
+}
+
+void clearStack(Calculator *c) {
+  clear(c->mem);
 }
 
 void storeValue(Calculator *c, int i){
