@@ -59,7 +59,7 @@ int recallValue(Calculator *c, int i){
 void display(Calculator *c) {
     
     int colWidth[5] = {4, 15, 12, 20 ,20};
-    int rowCount = 50;
+    int rowCount = 15;
     char strs[5][50][20]; // 5 columns, 50 rows each, of length 20 strings
     char temp[20];          //placeholder string
     
