@@ -43,4 +43,7 @@ void submitInput(Calculator *calc, char *in) {
         clearStack(calc);
     }
 
+    else if (!strcmp(in, "d")){
+        deleteLast(calc);
+    }
 }
