@@ -46,7 +46,7 @@ void compute(Calculator *c, char *sym){
 }
 
 void clearStack(Calculator *c) {
-  clear(c->mem);
+  clearStorage(c->mem);
 }
 
 void storeValue(Calculator *c, int i){
