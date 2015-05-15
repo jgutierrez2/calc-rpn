@@ -9,14 +9,18 @@
 struct Calculator {
   Stack *stack;
   Storage *mem;
+	
+  char histComp[100][20];
+  char histSol[100][20];
+  int h;
 };
 
 Calculator *newCalculator(){
   Calculator *c = malloc(sizeof(Calculator));
   c->stack = newstack();
   c->mem = newStorage();
-    
-    return c;
+  c->h = 0;
+  return c;
 }
 
 void destroyCalculator(Calculator *c){
@@ -40,16 +44,30 @@ void compute(Calculator *c, char *sym){
       case '-' : { push(c->stack, l-r); break; }
       case '*' : { push(c->stack, l*r); break; }
       case '/' : { push(c->stack, l/r); break; }
-      case '^' : { push(c->stack, pow(l,r)); break; }
+ //     case '^' : { push(c->stack, pow(l,r)); break; }
     }
+	  
+	sprintf(c->histComp[c->h],"%i %s %i", l,sym,r);
+	sprintf(c->histSol[c->h],"%i", at(c->stack,size(c->stack)-1));
+	(c->h)++;
   }
+}
+
+void clearStack(Calculator *c) {
+  while (size(c->stack) > 0) {
+    pop(c->stack);
+  }
+  c->h = 0;
+}
+
+void deleteLast(Calculator *c) {
+  pop(c->stack);
 }
 
 void storeValue(Calculator *c, int i){
     int j = pop(c->stack);
     store(c->mem, i, j);
     push(c->stack, j);
-    
 }
 
 int recallValue(Calculator *c, int i){
@@ -58,8 +76,8 @@ int recallValue(Calculator *c, int i){
 
 void display(Calculator *c) {
     
-    int colWidth[5] = {4, 15, 12, 20 ,20};
-    int rowCount = 15;
+    int colWidth[5] = {4, 15, 12, 18 ,10};
+    int rowCount = 10;
     char strs[5][50][20]; // 5 columns, 50 rows each, of length 20 strings
     char temp[20];          //placeholder string
     
@@ -84,26 +102,46 @@ void display(Calculator *c) {
 //3rd column contains values in memory
     for (i = 0; i < 10; i++) {
         sprintf(temp,"%i",recall(c->mem,i));
-        sprintf(strs[2][i],"r %i. %.*s%s",i,(int)(colWidth[2]-strlen(temp)), "                    ",temp);
+        sprintf(strs[2][i],"%.*s%s",(int)(colWidth[2]-strlen(temp)), "                    ",temp);
     }
     
-    for (i = 10; i < 50; i++) {
-        sprintf(strs[2][i],"%.*s",colWidth[2]+5,"                  ");
+    for (i = 10; i < rowCount; i++) {
+        sprintf(strs[2][i],"%.*s",colWidth[2],"                  ");
+    }
+	
+//4th column contains hist calcs
+	for (i = 0; i < c->h; i++) {
+		sprintf(temp,"%s",c->histComp[i]);
+        sprintf(strs[3][i],"%.*s%s",(int)(colWidth[3]-strlen(temp)), "                    ",temp);
+    }
+    
+    for (i = c->h; i < rowCount; i++) {
+        sprintf(strs[3][i],"%.*s",colWidth[3],"                  ");
     }
 
+//5th column contains hist sols
+	for (i = 0; i < c->h; i++) {
+		sprintf(temp,"%s",c->histSol[i]);
+        sprintf(strs[4][i],"%.*s%s",(int)(colWidth[4]-strlen(temp)), "                    ",temp);
+    }
+    
+    for (i = c->h; i < rowCount; i++) {
+        sprintf(strs[4][i],"%.*s",colWidth[4],"                  ");
+    }
+	
 //print to screen
     
     system("clear");
     
-    printf("   i       Stack              Mem       \n");
-    printf("----------------------------------------\n");
+    printf("   i       Stack              Mem                            History        \n");
+    printf("-----------------------------------------------------------------------------\n");
     
     for (i = 0; i < rowCount; i++) {
-        printf("|%s|%s|%s|\n", strs[0][i], strs[1][i], strs[2][i]);
+        printf("|%s |%s | r %i -> %s |%s =%s|\n", strs[0][i], strs[1][i], i, strs[2][i], strs[3][i], strs[4][i]);
     }
     
-    printf("----------------------------------------\n");
+    printf("-----------------------------------------------------------------------------\n");
 
-    printf("\nInput:");
+    printf("\nInput: ");
 
 }

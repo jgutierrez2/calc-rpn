@@ -38,5 +38,12 @@ void submitInput(Calculator *calc, char *in) {
         if (scanf(" %i",&j)) j = recallValue(calc, j);
         input(calc, j);
     }
+    
+    else if (!strcmp(in, "c")){
+        clearStack(calc);
+    }
 
+    else if (!strcmp(in, "d")){
+        deleteLast(calc);
+    }
 }
