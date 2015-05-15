@@ -46,4 +46,16 @@ void submitInput(Calculator *calc, char *in) {
     else if (!strcmp(in, "d")){
         deleteLast(calc);
     }
+    
+    else if (!strcmp(in, "rec")) {
+        record(calc);
+    }
+    
+    else if (!strcmp(in, "end")) {
+        endRec(calc);
+    }
+    
+    else if (!strcmp(in, "run")) {
+        run(calc);
+    }
 }

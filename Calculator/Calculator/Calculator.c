@@ -5,6 +5,7 @@
 #include "Calculator.h"
 #include "Stack.h"
 #include "Storage.h"
+#include "InputInterface.h"
 
 struct Calculator {
   Stack *stack;
@@ -13,15 +14,29 @@ struct Calculator {
   char histComp[100][20];
   char histSol[100][20];
   int h;
+    
+  char rec[100];
+  int r;
+    
+  void (*interface)(Calculator*, char*);
 };
 
-Calculator *newCalculator(){
+Calculator *newCalculator(void (*interface)(Calculator*,char*)){
   Calculator *c = malloc(sizeof(Calculator));
   c->stack = newstack();
   c->mem = newStorage();
   c->h = 0;
-    
+  c->r = 0;
+    c->interface = interface;
   return c;
+}
+
+void record(Calculator *c){
+    c->r = 1;
+}
+
+void endRec(Calculator *c){
+    c->r = 0;
 }
 
 void destroyCalculator(Calculator *c){
@@ -32,6 +47,11 @@ void destroyCalculator(Calculator *c){
 
 void input(Calculator *c, int i){
   push(c->stack,i);
+    
+    char temp[20];
+    sprintf(temp, " %i ", i);
+    
+    if (c->r) sprintf(c->rec, "%s %s", c->rec, temp);
 }
 
 void compute(Calculator *c, char *sym){
@@ -51,6 +71,10 @@ void compute(Calculator *c, char *sym){
 	sprintf(c->histComp[c->h],"%i %s %i", l,sym,r);
 	sprintf(c->histSol[c->h],"%i", at(c->stack,size(c->stack)-1));
 	(c->h)++;
+      
+      char temp[20];
+      sprintf(temp, "%s ", sym);
+     if (c->r) sprintf(c->rec, "%s %s", c->rec, temp);
   }
 }
 
@@ -65,16 +89,6 @@ void deleteLast(Calculator *c) {
   pop(c->stack);
 }
 
-void clearStack(Calculator *c) {
-  while (size(c->stack) > 0) {
-    pop(c->stack);
-  }
-}
-
-void deleteLast(Calculator *c) {
-  pop(c->stack);
-}
-
 void storeValue(Calculator *c, int i){
     int j = pop(c->stack);
     store(c->mem, i, j);
@@ -83,6 +97,19 @@ void storeValue(Calculator *c, int i){
 
 int recallValue(Calculator *c, int i){
     return recall(c->mem, i);
+}
+
+void run(Calculator* calc){
+    char prog[100];
+    sprintf(prog, "%s", calc->rec);
+    
+    char *in;
+    in = strtok (prog," ");
+    while (in != NULL) {
+        calc->interface(calc,in);
+        
+        in = strtok (NULL, " \n");
+    }
 }
 
 void display(Calculator *c) {
@@ -145,13 +172,13 @@ void display(Calculator *c) {
     system("cls");
     
     printf("   i       Stack              Mem                            History        \n");
-    printf("-----------------------------------------------------------------------------\n");
+    printf("------------------------------------------------------------------------------\n");
     
     for (i = 0; i < rowCount; i++) {
-        printf("|%s |%s | r %i -> %s |%s =%s|\n", strs[0][i], strs[1][i], i, strs[2][i], strs[3][i], strs[4][i]);
+        printf("|%s |%s | r %i -> %s |%s =%s |\n", strs[0][i], strs[1][i], i, strs[2][i], strs[3][i], strs[4][i]);
     }
     
-    printf("-----------------------------------------------------------------------------\n");
+    printf("------------------------------------------------------------------------------\n");
 
     printf("\nInput: ");
 

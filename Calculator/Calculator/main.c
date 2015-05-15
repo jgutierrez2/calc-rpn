@@ -16,7 +16,7 @@ void next(Calculator *calc){
 }
 
 int main(){
-    calc = newCalculator();
+    calc = newCalculator(submitInput);
 
     display(calc);
     
