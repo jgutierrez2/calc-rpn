@@ -20,6 +20,7 @@ Calculator *newCalculator(){
   c->stack = newstack();
   c->mem = newStorage();
   c->h = 0;
+    
   return c;
 }
 
@@ -58,6 +59,16 @@ void clearStack(Calculator *c) {
     pop(c->stack);
   }
   c->h = 0;
+}
+
+void deleteLast(Calculator *c) {
+  pop(c->stack);
+}
+
+void clearStack(Calculator *c) {
+  while (size(c->stack) > 0) {
+    pop(c->stack);
+  }
 }
 
 void deleteLast(Calculator *c) {
@@ -131,7 +142,7 @@ void display(Calculator *c) {
 	
 //print to screen
     
-    system("clear");
+    system("cls");
     
     printf("   i       Stack              Mem                            History        \n");
     printf("-----------------------------------------------------------------------------\n");
