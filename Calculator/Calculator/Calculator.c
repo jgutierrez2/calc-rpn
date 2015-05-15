@@ -57,8 +57,10 @@ void input(Calculator *c, int i){
 void compute(Calculator *c, char *sym){
     sym[1] = '\0';
   if (strcmp(sym,"+") == 0 || strcmp(sym, "-") == 0 || strcmp(sym, "*") == 0 || strcmp(sym, "/") == 0 || strcmp(sym, "^") == 0) {
-    int r = pop(c->stack);
-    int l = pop(c->stack);
+    double* r;
+    double* l;
+    
+    if (pop(c->stack, r) && pop(c->stack, l)) {
     
     switch (*sym) {
       case '+' : { push(c->stack, l+r); break; }
@@ -75,24 +77,27 @@ void compute(Calculator *c, char *sym){
       char temp[20];
       sprintf(temp, "%s ", sym);
      if (c->r) sprintf(c->rec, "%s %s", c->rec, temp);
+     
+    }
   }
 }
 
 void clearStack(Calculator *c) {
-  while (size(c->stack) > 0) {
-    pop(c->stack);
-  }
+  while (pop(c->stack, NULL));
+  
   c->h = 0;
 }
 
 void deleteLast(Calculator *c) {
-  pop(c->stack);
+  pop(c->stack, NULL);
 }
 
 void storeValue(Calculator *c, int i){
-    int j = pop(c->stack);
-    store(c->mem, i, j);
-    push(c->stack, j);
+    double* j;
+    if (pop(c->stack, j)) {
+    	store(c->mem, i, j);
+    	push(c->stack, j);
+    }
 }
 
 int recallValue(Calculator *c, int i){
